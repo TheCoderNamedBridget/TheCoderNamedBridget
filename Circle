@@ -1,0 +1,95 @@
+
+public class Circle {
+	
+	private int x, y, r;
+	
+	/**
+	 * constructor for circle class with x coordinate, y coordinate and radius 
+	 * @param xCor
+	 * @param yCor
+	 * @param rad
+	 */
+	Circle (int xCor, int yCor, int rad){
+		
+		x = xCor;
+		
+		y = yCor;
+		
+		r = rad;
+		
+	}
+	
+	/**
+	 * 
+	 * @return x coordinate
+	 */
+	public int getX() {
+		
+		return x;
+		
+	}
+	
+	/**
+	 * 
+	 * @return y coordinate
+	 */
+	public int getY() {
+		
+		return y;
+		
+	}
+	
+	/**
+	 * 
+	 * @return radius
+	 */
+	public int getRadius() {
+		
+		return r;
+		
+	}
+	
+	/**
+	 * 
+	 * @param cir
+	 * @return true if circles are equal, false if circle x, y, or radius are not the same
+	 * @Override
+	 */
+	public boolean equals (Circle cir) {
+		
+		if ( x == cir.getX() && y == cir.getY() && r == cir.getRadius() ) {
+			return true;
+		}
+		
+		return false;
+		
+	}
+	
+	
+	/**
+	 * @return String version of circle in format “(x,y) R = radius”
+	 */
+	@Override
+	public String toString( ) {
+		return "(" + x + "," + y + ") R = " + r + "";
+	}
+
+}
+
+
+/**
+ * CECS 274 – Lab Assignment 8 – Linked Lists Create a Linked List 
+ * of Circle objects using the LinkedList code given in the lecture.
+ * Circle Class – Create a Circle class that has the following:
+ * 1.  Instance variables: 3 integers: x, y and radius.  The x and y values are the coordinates of the center of the circle.
+ * 2.  Constructor: pass in three integers and assign them to x, y and radius.  
+ * 3.  Methods:  
+ * a.  Override equals - check x, y and radius.  
+ * b.  Override toString - return a circle in the format “(x,y) R = radius”.
+ * 
+ * 
+ * 
+ * Node Class – Modify the Node class to use Circles rather than Strings (Node should be inside of LinkedList class (not in a separate file)).
+ * LinkedList Class – Modify the Linked List class from Lectures 15 & 16 to use Circles instead of Strings.  
+ * Modify the toString method to add a new line between each item.Main –use the “Main.java” file provided on Beachboard as your main
+*/
