@@ -71,7 +71,7 @@ public class Circle {
 	 */
 	@Override
 	public String toString( ) {
-		return "(" + x + "," + y + ") R = " + r + "";
+		return "(" + x + "," + y + ") R = " + r + "\n";
 	}
 
 }
