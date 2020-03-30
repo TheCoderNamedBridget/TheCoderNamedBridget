@@ -1,0 +1,299 @@
+
+public class LinkedList {
+
+	private Node first;
+	private Node last;
+
+	public LinkedList() {
+
+		first = null;
+		last = null;
+
+	}
+
+	public boolean isEmpty() {
+
+		return first == null;
+
+	}
+
+	public void add(Circle s) {
+
+		if (first == null) {
+
+			first = new Node(s);
+
+			last = first;
+
+		} else {
+
+			Node n = new Node(s);
+
+			last.next = n;
+
+			last = n;
+
+		}
+	}
+
+	/**
+	 * TODO finish this method
+	 * 
+	 * @param index
+	 * @param s
+	 */
+	public void add(int index, Circle s) {
+
+		if (index < 0) {
+
+			throw new IndexOutOfBoundsException();
+
+		}
+		if (index == 0) {
+
+			first = new Node(s, first);
+
+			if (last == null) {
+
+				last = first;
+
+			}
+
+		} else {
+
+			Node n = first;
+
+			if (n == null) {
+
+				throw new IndexOutOfBoundsException();
+
+			}
+
+			for (int j = 1; j < index; j++) {
+
+				n = n.next;
+				if (n == null) {
+
+					throw new IndexOutOfBoundsException();
+
+				}
+			}
+
+			n.next = new Node(s, n.next);
+
+			if (n.next.next == null) {
+				last = n.next;
+			}
+		}
+	}
+
+	/**
+	 * 
+	 * @param indexToBeRemoved
+	 */
+	public Circle remove(int indexToBeRemoved) {
+		Circle rem;
+
+		if (first == null || indexToBeRemoved < 0) {
+
+			throw new IndexOutOfBoundsException();
+
+		}
+		if (indexToBeRemoved == 0) {
+
+			rem = first.data;
+			first = first.next;
+
+			if (first == null) {
+				last = null;
+			}
+
+		} else {
+			Node n = first;
+			for (int j = 1; j < indexToBeRemoved; j++) {
+				n = n.next;
+				if (n == null) {
+					throw new IndexOutOfBoundsException();
+				}
+			}
+			if (n.next == null) {
+				throw new IndexOutOfBoundsException();
+			}
+			rem = n.next.data;
+			n.next = n.next.next;
+			if (n.next == null) {
+				last = n;
+			}
+		}
+		return rem;
+	}
+
+	/**
+	 * 
+	 * @param circleToBeRemoved
+	 * @return
+	 */
+	public boolean remove(Circle circleToBeRemoved) {
+
+		if (first != null) {
+			
+			if (circleToBeRemoved.equals(first.data)) {
+				
+				first = first.next;
+				
+				if (first == null) {
+					
+					last = null;
+					
+				}
+				
+				return true;
+				
+			} else {
+				
+				Node n = first;
+				
+				while (n.next != null && !n.next.data.equals(circleToBeRemoved)) {
+					
+					n = n.next;
+					
+				}
+				
+				if (n.next != null) {
+					
+					n.next = n.next.next;
+					
+					if (n.next == null) {
+						
+						last = n;
+						
+					}
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * 
+	 * @param i
+	 * @return
+	 */
+	public Circle get(int i) {
+
+		if (first == null || i < 0) {
+			throw new IndexOutOfBoundsException();
+		}
+
+		Node n = first;
+
+		for (int j = 0; j < i; j++) {
+			n = n.next;
+			if (n == null) {
+				throw new IndexOutOfBoundsException();
+			}
+		}
+		return n.data;
+
+	}
+
+	/**
+	 * 
+	 * @param i
+	 * @param s
+	 */
+	public void set(int i, Circle s) {
+
+		
+		//System.out.println("index = " + i + " circle value s = " + s.toString());
+		
+		if (first == null || i < 0) {
+			
+			throw new IndexOutOfBoundsException();
+			
+		}
+
+		Node n = first;
+
+		for (int j = 0; j < i ; j++) {
+			
+
+			n = n.next;
+			
+
+			if (n == null) {
+
+				throw new IndexOutOfBoundsException();
+
+			}
+			//System.out.println("indexj = " + j + " circle value s = " + n.data.toString());
+
+			
+		}
+		n.data = s;
+		
+
+	}
+
+	/**
+	 * 
+	 * @return
+	 */
+	public int size() {
+
+		int count = 0;
+
+		Node n = first;
+
+		while (n != null) {
+
+			count++;
+			n = n.next;
+
+		}
+
+		return count;
+
+	}
+
+	@Override
+	public String toString() {
+
+		String str = "";
+
+		Node n = first;
+
+		while (n != null) {
+
+			str = str + n.data;
+
+			n = n.next;
+
+		}
+
+		return str;
+	}
+
+	/**
+	 * 
+	 * @author bridg
+	 *
+	 */
+	public class Node {
+
+		public Circle data;
+		public Node next;
+
+		public Node(Circle s) {
+			data = s;
+			next = null;
+		}
+
+		public Node(Circle s, Node n) {
+			data = s;
+			next = n;
+		}
+
+	}
+}
